@@ -21,9 +21,6 @@ export struct Workspace {
     private dockList: DockData = new DockData()
 
     aboutToAppear(): void {
-        LayoutConfig.getInstance().setUIContext(this.getUIContext())
-        LayoutConfig.getInstance().onCreate()
-        Logger.w(TAG, "ViewPage height= " + LayoutConfig.getInstance().cellViewPageHeight)
     }
 
     build() {

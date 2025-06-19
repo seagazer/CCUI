@@ -67,9 +67,6 @@ export class LayoutConfig {
         Logger.d(TAG, "display= " + JSON.stringify(dis))
         this.workspaceWidth = dis.width / dis.densityPixels // vp
         // todo 减去状态栏高度
-        window.getLastWindow(this.uiContext!.getHostContext()).then((win) => {
-            Logger.w(TAG, "system bar h= " + JSON.stringify(win.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM))) // 38.76923076923077
-        })
         // todo 读取系统配置文件
         this.workspaceHeight = dis.height / dis.densityPixels - 39
         // todo 需要分开处理pad和phone
@@ -89,10 +86,9 @@ export class LayoutConfig {
         this.cellViewPageHeight = this.cellHeight * this.defaultTemplate.y
 
         this.dockHeight = this.cellHeight + this.dockPaddingTop + this.dockPaddingBottom
-        const blackHeight =
-            this.workspaceHeight - this.indicatorHeight - this.dockHeight - this.cellViewPageHeight - this.workspacePaddingTop -
-            this.workspacePaddingBottom
-        Logger.i(TAG, "blackHeight= " + blackHeight)
+        const blankHeight = this.workspaceHeight - this.indicatorHeight - this.dockHeight - this.cellViewPageHeight -
+        this.workspacePaddingTop - this.workspacePaddingBottom
+        Logger.i(TAG, "blankHeight= " + blankHeight)
     }
 
     getContentSize(spanX: number, spanY: number): Size {
